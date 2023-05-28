@@ -67,38 +67,38 @@ class MyComplex:
 if __name__ == '__main__':
     print('\n\t---WELCOME---')
     c = complex(3.3,2)
-    print('\nnormal boring complex:\t\t c = complex(3.3,2)\t\t',c)
+    print('\nnormal boring complex:\t\t c = complex(3.3,2)\t\t',c,type(c))
     ee = MyComplex(3.3,-2)
-    print('very fun and special Mycomplex:  MyCx = MyComplex(3.3,-2)\t',ee)
-    print('MyCx.real: \t',ee.real)
-    print('MyCx.imag: \t',ee.imag)
-    print('MyCx.conj: \t',ee.conjugate())
-
+    print('very fun and special Mycomplex:  MyCx = MyComplex(3.3,-2)\t',ee,type(ee))
+    print('\tMyCx.real: \t',ee.real)
+    print('\tMyCx.imag: \t',ee.imag)
+    print('\tMyCx.conj: \t',ee.conjugate())
+    print('\ttype(MyCx): \t',type(ee),'\n\n')
     cx = MyComplex(c)
-    print(f"""
-    try to Mycomplex a boring complex...
+    print(f"""try to convert in Mycomplex a boring complex...
+    type(c) :\t {type(c)}
     Cx = MyComplex(c)
+    type(Cx) :\t {type(cx)}
+
     Cx:\t\t {cx}
     Cx.real:\t {cx.real}
     Cx.imag:\t {cx.imag}
-    Cx.conj():\t {cx.conjugate()}
+    Cx.conj():\t {cx.conjugate()} 
     """)
 
     a = MyComplex(2,4)
     b = MyComplex(3,1)
     c = a + b 
     print(f"""Operation With Complex numbers:
-    \taddition:
     a = {a}
     b = {b}
+    \taddition:
     c = a+b = {c}
     a + b = {a+b}
     b + a = {b+a}
     a + 2 = {a+2}
     2 + a = {2+a}
     \tsubtraction:
-    a = {a}
-    b = {b}
     a - b = {a - b}
     b - a = {b - a}
     a - 2 = {a - 2}

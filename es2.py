@@ -58,15 +58,21 @@ if __name__ == '__main__':
   
     print(f'\ns1 = {s1}\ts2 = {s2}\ns3 = {s3}\ts4 = {s4}\ns5 = {s5}\n')
     
-    print('s1 <= s2:\t t',s1 <= s2)
+    print('s5 == s1:\t t',s5 == s1)
     print('s1 < s2:\t t',s1 < s2)
     print('s2 > s1:\t t',s2 > s1)
+    print('s1 <= s2:\t t',s1 <= s2)
     print('s1 >= s5:\t t', s1 >= s5)
-    print('s1 != s4:\t t', s1 != s4)
-    print('s2 >= s4:\t f', s2 >= s4)
-    print('s1 != s5:\t f', s1 != s5)
-    print('s2 > s4:\t f', s2 > s4)
+    print('s1 != s4:\t t', s1 != s4,'\n')
+
+
     print('s1 == s2:\t f',s1 == s2)
-    print('s2 == s1:\t f',s2 == s1)
-    print('s1 < s5:\t f',s1 < s5)    
-    print('s4 <= s2:\t f',s4 <= s2)
+    print('s1 < s5:\t f',s1 < s5)
+    print('s2 > s4:\t f', s2 > s4)
+    print('s4 <= s2:\t f',s4 <= s2) 
+    print('s2 >= s4:\t f', s2 >= s4)
+    print('s1 != s5:\t f', s1 != s5,'\n\n')
+    
+    
+       
+    

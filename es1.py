@@ -59,7 +59,7 @@ if __name__ == '__main__':
     l.append(16)
  
     x = 3
-    print(l,'contains 3?\t', x in l)
+    print('\n\n',l,'contains 3?\t', x in l)
     x = 20
     print(l,'contains 20?\t', x in l)
     print('---iter---')
@@ -72,10 +72,10 @@ if __name__ == '__main__':
           
           
     SortedSet.extend(l,[10,20])
-    l.extend([100,-29])
-    print('extend [10,20,100,-29]: ',l)
+    l.extend([100,-29,6])
+    print('extend [10,20,100,-29,6]: ',l)
     try:
         l.reverse()
     except RuntimeError:
         print('tried to reverse: ',RuntimeError)
-    print('dis a bonus, print(l[3]): ',l[3])
+    print('dis a bonus, print(l[3]): ',l[3],'\n\n')

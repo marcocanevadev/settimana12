@@ -92,14 +92,16 @@ if __name__ == '__main__':
     z2 = MyComplex(2,6)
     c = complex(1,4)
     z3 = MyComplex(1,4)
-    print(f'\n\nz = z3 = {z}, z2 = {z2}, c = {c}')
+    print(f'\n\nz = z3 = MyComplex{z}, z2 = MyComplex{z2}, c = complex{c}')
     print(f"""Comparison Operators:
     \tFalse:
     z == z2 :\t{z == z2}
-     z != c :\t{z != c}
+    c != z  :\t{z != c}
     z != z3 :\t{z!= z3}
+    c == z2 :\t{c == z2}
     \tTrue:
-    z == c  :\t{z == c}
+    c != z2 :\t{c != z2}
+    c == z  :\t{z == c}
     z == z3 :\t{z == z3}
     z != z2 :\t{z != z2}""")
     print(f"""Neg and Pos:
@@ -133,6 +135,4 @@ if __name__ == '__main__':
     a **2 = {a**2}
     a **1 = {a**1}
     """)
-    print(f'a.real {a.real}, a.imag {a.imag}, b.real {b.real}, b.imag {b.imag}')
-
 
