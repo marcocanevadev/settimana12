@@ -15,17 +15,14 @@ class MyComplex:
         return MyComplex(self._x, -self._y)
 
     def __str__(self):
-        if self.imag()<0:
-            return f'({self._x}{self._y}j)'
-        else:
-            return f'({self._x}+{self._y}j)'
+            return f'({self._x:.3g}{self._y:+.3g}j)'
         
     def __add__ (self, other):
         if isinstance(other, (int,float)):
             return MyComplex(self._x+other,self._y)
         if isinstance(other, MyComplex):
-            x = self._x + other.real()
-            y = self._y + other.imag()
+            x = self.real() + other.real()
+            y = self.imag() + other.imag()
         return MyComplex(x,y)
     def __radd__(self, other):
         if isinstance(other, MyComplex):
@@ -37,8 +34,8 @@ class MyComplex:
         if isinstance(other, (int,float)):
             return MyComplex(self._x-other,self._y)
         if isinstance(other, MyComplex):
-            x = self._x - other.real()
-            y = self._y - other.imag()
+            x = self.real() - other.real()
+            y = self.imag() - other.imag()
         return MyComplex(x,y)
     def __rsub__(self, other):
         if isinstance(other, (int,float)):
@@ -48,25 +45,30 @@ class MyComplex:
 
     def __mul__(self, other):
         if isinstance(other, (int,float)):
-            return MyComplex(self._x*other,self._y)
+            return MyComplex(self._x*other,self._y*other)
         if isinstance(other, MyComplex):
             x = self.real()*other.real() - self.imag()*other.imag()
             y = self.real()*other.imag() + self.imag()*other.real()
             return MyComplex(x,y)
     def __rmul__(self, other):
-        pass
+        if isinstance(other,(int,float)):   return MyComplex(self._x*other, self._y*other)
+        return MyComplex(other, self)
 
     def __truediv__(self, other):
-        pass
+        if isinstance(other, MyComplex):    return self * other.reciprocal()
+        return self * (1/other)
     def __rtruediv__(self, other):
-        pass
-
+        if isinstance(other, (int,float)):  return other*self.reciprocal()
+    
+    def reciprocal(self):
+        return MyComplex(self.real()/(self.real()**2+self.imag()**2),-(self.imag()/(self.real()**2+self.imag()**2)))
 
 if __name__ == '__main__':
+    print('\n\t---WELCOME---')
     c = complex(3.3,2)
-    print('\n\n\nnormal boring complex: \t\t',c)
+    print('\nnormal boring complex:\t\t c = complex(3.3,2)\t\t',c)
     ee = MyComplex(3.3,-2)
-    print('very fun and special Mycomplex:\t',ee)
+    print('very fun and special Mycomplex:  MyCx = MyComplex(3.3,-2)\t',ee)
     print('MyCx.real(): \t',ee.real())
     print('MyCx.imag(): \t',ee.imag())
     print('MyCx.conj(): \t',ee.conjugate())
@@ -79,7 +81,6 @@ if __name__ == '__main__':
     Cx.real():\t {cx.real()}
     Cx.imag():\t {cx.imag()}
     Cx.conj():\t {cx.conjugate()}
-
     """)
 
     a = MyComplex(5,2)
@@ -100,11 +101,17 @@ if __name__ == '__main__':
     a - b = {a - b}
     b - a = {b - a}
     a - 2 = {a - 2}
-    2 - a = {2 - a}
-    \tmultiplication:
+    2 - a = {2 - a}""")
+    print(f"""\tmultiplication:
     a * 2 = {a * 2}
+    2 * a = {2 * a}
     a * b = {a * b}
+    b * a = {b * a}""")
+    print(f"""\tdivision:
+    a / b = {a / b}
+    b / a = {b / a}
+    a / 2 = {a / 2}
+    2 / a = {2 / a}
     """)
-   
 
 
