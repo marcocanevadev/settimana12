@@ -49,12 +49,7 @@ class MyComplex(Complex):
         else:
             return NotImplemented
     def __radd__(self, other):
-        #if isinstance(other, (int,float)):
-        return self +other
-        #elif isinstance(other, (complex,MyComplex)):
-        #    return other + self
-        #else:
-         #   return NotImplemented     
+        return self +other 
     def __mul__(self, other):
         if isinstance(other, (int,float)):
             return MyComplex(self.real*other,self.imag*other)
@@ -65,14 +60,29 @@ class MyComplex(Complex):
         else:
             return NotImplemented      
     def __rmul__(self,other): return self * other      
-    def __truediv__(self, other): pass  
-    def __rtruediv__(self, other): pass 
-    def __pow__(self, other): pass      # with Real numbers (not any Complex)  
-    def __rpow__(self, other): pass     # with Real numbers (not any Complex) 
+    def __truediv__(self, other): 
+        if isinstance(other, (MyComplex, complex)):
+            return self * MyComplex.reciprocal(other)
+        elif isinstance(other, (int, float)):
+            return self * (1/other)
+        else:
+            return NotImplemented
+    def __rtruediv__(self, other): return other * self.reciprocal()
+    def __pow__(self, other):
+        if isinstance(other, (int)):
+            ans = self      # with Real numbers (not any Complex)  
+            for _ in range(other-1):
+                ans *= ans
+            return ans
+        return NotImplemented 
+    def __rpow__(self, other): return NotImplemented     # with Real numbers (not any Complex) 
     @property
     def real(self): return self._x
     @property
     def imag(self): return self._y
+    
+    def reciprocal(self): 
+        return MyComplex(self.real/(self.real**2+self.imag**2),-(self.imag/(self.real**2+self.imag**2)))
     def conjugate(self): return MyComplex(self.real,-self.imag)
 
 
@@ -82,7 +92,7 @@ if __name__ == '__main__':
     z2 = MyComplex(2,6)
     c = complex(1,4)
     z3 = MyComplex(1,4)
-    print(f'z = z3 = {z}, z2 = {z2}, c = {c}')
+    print(f'\n\nz = z3 = {z}, z2 = {z2}, c = {c}')
     print(f"""Comparison Operators:
     \tFalse:
     z == z2 :\t{z == z2}
@@ -91,23 +101,20 @@ if __name__ == '__main__':
     \tTrue:
     z == c  :\t{z == c}
     z == z3 :\t{z == z3}
-    z != z2 :\t{z != z2}
-    """)
+    z != z2 :\t{z != z2}""")
     print(f"""Neg and Pos:
     -z = {-z}
     +z = {+z}""")
     a = MyComplex(2,4)
-    b = MyComplex(3,1)
+    b = complex(3,1)
     print(f"""Operation With Complex numbers:
-    a = {a}, b = {b}
+    a = MyComplex{a}, b = complex{b}
     \taddition:
     a + b = {a+b}
     b + a = {b+a}
     a + 2 = {a +2}
     2 + a = {2+a}""")
     print(f"""\tsubtraction:
-    a = {a}
-    b = {b}
     a - b = {a - b}
     b - a = {b - a}
     a - 2 = {a - 2}
@@ -121,7 +128,11 @@ if __name__ == '__main__':
     a / b = {a / b}
     b / a = {b / a}
     a / 2 = {a / 2}
-    2 / a = {2 / a}
+    2 / a = {2 / a}""")
+    print(f"""\tpow:
+    a **2 = {a**2}
+    a **1 = {a**1}
     """)
+    print(f'a.real {a.real}, a.imag {a.imag}, b.real {b.real}, b.imag {b.imag}')
 
 
